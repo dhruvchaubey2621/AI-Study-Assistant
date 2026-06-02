@@ -13,13 +13,13 @@ client = genai.Client(
 
 # Page Config
 st.set_page_config(
-    page_title="AI Study Assistant",
+    page_title="Friday",
     page_icon="📚",
     layout="wide"
 )
 
 # Header
-st.title("📚 AI Study Assistant")
+st.title("📚 Friday")
 st.write("Generate summaries, quizzes, and flashcards instantly.")
 
 # Inputs
@@ -28,6 +28,16 @@ topic = st.text_input("Enter a study topic")
 level = st.selectbox(
     "Select Level",
     ["School", "Class 11-12", "College"]
+)
+
+study_mode = st.selectbox(
+    "Study Mode",
+    [
+        "Quick Revision",
+        "Detailed Notes",
+        "Exam Preparation",
+        "Flashcards Only"
+    ]
 )
 
 # Generate Button
@@ -44,15 +54,35 @@ You are an expert teacher.
 
 Topic: {topic}
 Student Level: {level}
+Study Mode: {study_mode}
 
-Create study material for this topic.
+Instructions:
+
+If Study Mode is "Quick Revision":
+- Give concise notes
+- Focus on key concepts
+- Keep summary around 150-200 words
+
+If Study Mode is "Detailed Notes":
+- Give detailed explanation
+- Include examples
+- Include applications
+- Keep summary around 400-600 words
+
+If Study Mode is "Exam Preparation":
+- Focus on important concepts
+- Mention common exam questions
+- Mention common mistakes
+- Include exam tips
+
+If Study Mode is "Flashcards Only":
+- Keep summary very short
+- Focus heavily on flashcards
 
 Return ONLY valid JSON.
 
-JSON Format:
-
 {{
-  "summary": "Detailed notes of at least 300 words",
+  "summary": "Detailed notes here",
 
   "quiz": [
     "Question 1",
@@ -140,6 +170,6 @@ Return only JSON and nothing else.
 
         except Exception as e:
          if "503" in str(e):
-             st.warning("Gemini is currently overloaded. Please wait a minute and try again.")
+             st.warning("Friday is currently overloaded. Please wait a minute and try again.")
          else:
              st.error(f"Error: {e}")    
