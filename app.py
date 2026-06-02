@@ -5,9 +5,9 @@ from datetime import datetime
 from dotenv import load_dotenv
 from google import genai
 
-# =========================
+
 # LOAD API
-# =========================
+
 
 load_dotenv()
 
@@ -15,9 +15,8 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
-# =========================
+
 # HISTORY FILE
-# =========================
 
 HISTORY_FILE = os.path.join(os.getcwd(), "history.json")
 
@@ -25,9 +24,9 @@ if not os.path.exists(HISTORY_FILE):
     with open(HISTORY_FILE, "w") as f:
         json.dump([], f)
 
-# =========================
+
 # PAGE CONFIG
-# =========================
+
 
 st.set_page_config(
     page_title="Friday",
@@ -35,9 +34,8 @@ st.set_page_config(
     layout="wide"
 )
 
-# =========================
 # SIDEBAR HISTORY
-# =========================
+
 
 st.sidebar.title("📚 Study History")
 
@@ -69,9 +67,9 @@ try:
 except Exception as e:
     st.sidebar.error(str(e))
 
-# =========================
+
 # MAIN UI
-# =========================
+
 
 st.title("📚 Friday")
 st.write("Generate summaries, quizzes, and flashcards instantly.")
@@ -93,9 +91,9 @@ study_mode = st.selectbox(
     ]
 )
 
-# =========================
+
 # GENERATE BUTTON
-# =========================
+
 
 if st.button("Generate Study Material"):
 
@@ -193,9 +191,9 @@ Return only JSON and nothing else.
             quiz = data["quiz"]
             flashcards = data["flashcards"]
 
-            # =========================
-            # SAVE HISTORY
-            # =========================
+            
+# SAVE HISTORY
+            
 
             new_entry = {
                 "topic": topic,
@@ -217,9 +215,9 @@ Return only JSON and nothing else.
 
             st.success("History saved!")
 
-            # =========================
-            # DISPLAY RESULTS
-            # =========================
+            
+# DISPLAY RESULTS
+            
 
             tab1, tab2, tab3 = st.tabs(
                 ["📖 Summary", "❓ Quiz", "🧠 Flashcards"]
@@ -264,9 +262,9 @@ Return only JSON and nothing else.
             else:
                 st.error(f"Error: {e}")
 
-# =========================
+
 # OPEN SAVED NOTES
-# =========================
+
 
 if "saved_summary" in st.session_state:
 
