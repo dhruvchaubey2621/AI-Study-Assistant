@@ -33,6 +33,10 @@ pip install -r requirements.txt
 
 streamlit run app.py
 
+## Live Demo
+
+https://friday-ai-study-assistant.streamlit.app/
+
 
 ## Screenshots
 
