@@ -1,6 +1,7 @@
 import os
 import json
 import streamlit as st
+from datetime import datetime
 from dotenv import load_dotenv
 from google import genai
 
@@ -11,12 +12,34 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
+HISTORY_FILE = "history.json"
+
+if not os.path.exists(HISTORY_FILE):
+    with open(HISTORY_FILE, "w") as f:
+        json.dump([], f)
+
 # Page Config
 st.set_page_config(
     page_title="Friday",
     page_icon="📚",
     layout="wide"
 )
+st.sidebar.title("📚 Study History")
+
+try:
+    with open(HISTORY_FILE, "r") as f:
+        history = json.load(f)
+
+    if history:
+        for item in reversed(history[-10:]):
+            st.sidebar.write(
+             f"📖 {item['topic'].title()}\n{item['level']} • {item.get('study_mode','Unknown Mode')}"
+            )
+    else:
+        st.sidebar.write("No history yet.")
+
+except Exception as e:
+    st.sidebar.error(str(e))
 
 # Header
 st.title("📚 Friday")
@@ -138,6 +161,26 @@ Return only JSON and nothing else.
             summary = data["summary"]
             quiz = data["quiz"]
             flashcards = data["flashcards"]
+            # Save to history
+
+            new_entry = {
+             "topic": topic,
+             "level": level,
+             "study_mode": study_mode,
+             "time": datetime.now().strftime("%d-%m-%Y %H:%M")
+            }
+
+            with open("history.json", "r") as file:
+             history = json.load(file)
+
+            history.append(new_entry)
+            st.success("History saved!")
+
+            with open("history.json", "w") as file:
+             json.dump(history, file, indent=4)
+
+            with open(HISTORY_FILE, "w") as f:
+             json.dump(history, f, indent=4)
 
             # Tabs
             tab1, tab2, tab3 = st.tabs(
