@@ -5,25 +5,40 @@ from datetime import datetime
 from dotenv import load_dotenv
 from google import genai
 
-# Load API key
+# =========================
+# LOAD API
+# =========================
+
 load_dotenv()
 
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
-HISTORY_FILE = "history.json"
+# =========================
+# HISTORY FILE
+# =========================
+
+HISTORY_FILE = os.path.join(os.getcwd(), "history.json")
 
 if not os.path.exists(HISTORY_FILE):
     with open(HISTORY_FILE, "w") as f:
         json.dump([], f)
 
-# Page Config
+# =========================
+# PAGE CONFIG
+# =========================
+
 st.set_page_config(
     page_title="Friday",
     page_icon="📚",
     layout="wide"
 )
+
+# =========================
+# SIDEBAR HISTORY
+# =========================
+
 st.sidebar.title("📚 Study History")
 
 try:
@@ -31,21 +46,36 @@ try:
         history = json.load(f)
 
     if history:
-        for item in reversed(history[-10:]):
-            st.sidebar.write(
-             f"📖 {item['topic'].title()}\n{item['level']} • {item.get('study_mode','Unknown Mode')}"
-            )
-    else:
-        st.sidebar.write("No history yet.")
+
+        selected_topic = st.sidebar.selectbox(
+            "Previous Searches",
+            [item["topic"] for item in reversed(history)]
+        )
+
+        selected_entry = None
+
+        for item in history:
+            if item["topic"] == selected_topic:
+                selected_entry = item
+
+        st.sidebar.markdown("---")
+
+        if st.sidebar.button("📖 Open Saved Notes"):
+
+            st.session_state["saved_summary"] = selected_entry.get("summary", "")
+            st.session_state["saved_quiz"] = selected_entry.get("quiz", [])
+            st.session_state["saved_flashcards"] = selected_entry.get("flashcards", [])
 
 except Exception as e:
     st.sidebar.error(str(e))
 
-# Header
+# =========================
+# MAIN UI
+# =========================
+
 st.title("📚 Friday")
 st.write("Generate summaries, quizzes, and flashcards instantly.")
 
-# Inputs
 topic = st.text_input("Enter a study topic")
 
 level = st.selectbox(
@@ -63,7 +93,10 @@ study_mode = st.selectbox(
     ]
 )
 
-# Generate Button
+# =========================
+# GENERATE BUTTON
+# =========================
+
 if st.button("Generate Study Material"):
 
     if not topic.strip():
@@ -150,8 +183,6 @@ Return only JSON and nothing else.
             )
 
             result = response.text.strip()
-
-            # Remove markdown code fences if Gemini adds them
             result = result.replace("```json", "")
             result = result.replace("```", "")
             result = result.strip()
@@ -161,28 +192,35 @@ Return only JSON and nothing else.
             summary = data["summary"]
             quiz = data["quiz"]
             flashcards = data["flashcards"]
-            # Save to history
+
+            # =========================
+            # SAVE HISTORY
+            # =========================
 
             new_entry = {
-             "topic": topic,
-             "level": level,
-             "study_mode": study_mode,
-             "time": datetime.now().strftime("%d-%m-%Y %H:%M")
+                "topic": topic,
+                "level": level,
+                "study_mode": study_mode,
+                "time": datetime.now().strftime("%d-%m-%Y %H:%M"),
+                "summary": summary,
+                "quiz": quiz,
+                "flashcards": flashcards
             }
 
-            with open("history.json", "r") as file:
-             history = json.load(file)
+            with open(HISTORY_FILE, "r") as file:
+                history = json.load(file)
 
             history.append(new_entry)
+
+            with open(HISTORY_FILE, "w") as file:
+                json.dump(history, file, indent=4)
+
             st.success("History saved!")
 
-            with open("history.json", "w") as file:
-             json.dump(history, file, indent=4)
+            # =========================
+            # DISPLAY RESULTS
+            # =========================
 
-            with open(HISTORY_FILE, "w") as f:
-             json.dump(history, f, indent=4)
-
-            # Tabs
             tab1, tab2, tab3 = st.tabs(
                 ["📖 Summary", "❓ Quiz", "🧠 Flashcards"]
             )
@@ -212,7 +250,41 @@ Return only JSON and nothing else.
             )
 
         except Exception as e:
-         if "503" in str(e):
-             st.warning("Friday is currently overloaded. Please wait a minute and try again.")
-         else:
-             st.error(f"Error: {e}")    
+
+            if "503" in str(e):
+                st.warning(
+                    "Friday is currently overloaded. Please wait a minute and try again."
+                )
+
+            elif "429" in str(e):
+                st.warning(
+                    "API quota exceeded. Please wait or switch to another Gemini API key."
+                )
+
+            else:
+                st.error(f"Error: {e}")
+
+# =========================
+# OPEN SAVED NOTES
+# =========================
+
+if "saved_summary" in st.session_state:
+
+    st.markdown("---")
+    st.header("📚 Saved Study Session")
+
+    tab1, tab2, tab3 = st.tabs(
+        ["📖 Summary", "❓ Quiz", "🧠 Flashcards"]
+    )
+
+    with tab1:
+        st.write(st.session_state["saved_summary"])
+
+    with tab2:
+        for q in st.session_state["saved_quiz"]:
+            st.write("•", q)
+
+    with tab3:
+        for card in st.session_state["saved_flashcards"]:
+            with st.expander(card["question"]):
+                st.write(card["answer"])
