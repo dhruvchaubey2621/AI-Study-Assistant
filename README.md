@@ -42,7 +42,7 @@ streamlit run app.py
 
 ![Quiz](assets/quiz.png)
 
-![Flashcards](assets/flashcards.png)
+![Flashcards](assets/flashcard.png)
 
 ![History](assets/history.png)
 
