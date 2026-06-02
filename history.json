@@ -1,73 +1,37 @@
 [
     {
-        "topic": "Ai",
-        "level": "School",
-        "study_mode": "Detailed Notes",
-        "time": "02-06-2026 17:06",
-        "summary": "Artificial Intelligence, often shortened to AI, is a field of computer science that focuses on creating machines that can think and act like humans. Imagine a computer program that can learn, solve problems, understand language, recognize faces, or even play games better than a human \u2013 that's AI at work! The main goal of AI is to make computers smart enough to perform tasks that typically require human intelligence.\n\nThere are different ways to think about how AI works. One common approach is **Machine Learning**, which is a subset of AI. Instead of being explicitly programmed for every single scenario, an AI system using machine learning is fed lots and lots of information, called **data**. It then learns patterns and rules from this data. For example, to teach an AI to recognize a cat, you would show it thousands of pictures of cats and thousands of pictures that are not cats. Over time, the AI learns to identify the features that make something a cat.\n\nAI can be broadly categorized into two types:\n1.  **Narrow AI (or Weak AI):** This is the AI we encounter every day. It's designed and trained for a very specific task. It can be incredibly good at that one task, but it cannot perform tasks outside its specialty. Examples include your phone's voice assistant (like Siri or Google Assistant), recommendation systems on Netflix or YouTube (suggesting movies or videos), facial recognition on your smartphone, AI opponents in video games, and spam filters in your email.\n2.  **General AI (or Strong AI):** This is a hypothetical type of AI that would be able to understand, learn, and apply intelligence to any intellectual task that a human being can. It would have consciousness and a wide range of cognitive abilities, much like a person. This kind of AI does not exist yet and is a topic of much research and science fiction.\n\n**Examples of AI in Your Daily Life:**\n*   **Smartphones:** Voice assistants, face ID unlock, predictive text, camera enhancements.\n*   **Social Media:** Recommending friends, showing you posts you might like, tagging people in photos.\n*   **Streaming Services:** Suggesting movies, TV shows, or music based on your past viewing/listening habits.\n*   **Online Shopping:** Recommending products based on what you've looked at or bought before.\n*   **Navigation Apps:** Finding the best route, predicting traffic, estimating arrival times.\n\n**Applications of AI in Various Fields:**\n*   **Healthcare:** AI helps doctors diagnose diseases earlier and more accurately (e.g., analyzing X-rays or MRI scans). It also assists in drug discovery and personalized treatment plans.\n*   **Education:** AI can create personalized learning experiences, adapting lessons to a student's pace and style, and even acting as virtual tutors.\n*   **Transportation:** Self-driving cars use AI to perceive their surroundings, make decisions, and navigate roads safely.\n*   **Environmental Protection:** AI can monitor climate change, predict natural disasters, and manage resources more efficiently.\n*   **Robotics:** AI powers robots in factories for assembly, in warehouses for sorting, and even for exploration in dangerous environments.\n\nAI brings many benefits, like increased efficiency, accuracy, and the ability to automate repetitive tasks, freeing up humans for more creative or complex work. It helps us solve problems that are too big or too complex for humans alone. However, it also raises important questions about ethics, privacy, potential job changes, and ensuring AI systems are fair and unbiased. Understanding AI is becoming more and more important as it continues to shape our world.",
-        "quiz": [
-            "What does AI stand for and what is its main goal?",
-            "Explain the concept of 'Machine Learning' and how AI uses 'data' to learn.",
-            "What is the difference between 'Narrow AI' and 'General AI'? Give an example of each.",
-            "Name three common examples of AI that you might use or encounter in your daily life.",
-            "Describe one way AI is being used to help people in either healthcare or education."
-        ],
-        "flashcards": [
-            {
-                "question": "What does AI stand for?",
-                "answer": "Artificial Intelligence."
-            },
-            {
-                "question": "What is the name for AI designed for a specific task, like a voice assistant?",
-                "answer": "Narrow AI (or Weak AI)."
-            },
-            {
-                "question": "What do we call the information that AI learns from to find patterns?",
-                "answer": "Data."
-            },
-            {
-                "question": "What is the process where AI learns from data without explicit programming?",
-                "answer": "Machine Learning."
-            },
-            {
-                "question": "Name one industry where AI is used to help people.",
-                "answer": "Healthcare, Education, Transportation, Environmental Protection, Robotics (any one is fine)."
-            }
-        ]
-    },
-    {
-        "topic": "computer",
+        "topic": "Laws of motion ",
         "level": "School",
         "study_mode": "Quick Revision",
-        "time": "02-06-2026 17:14",
-        "summary": "A computer is an electronic machine that processes data. It takes raw data as **input**, performs operations on it, stores it, and then produces meaningful **output**. Think of it as a super-fast calculator and organizer.\n\nComputers consist of two main parts:\n1.  **Hardware**: These are the physical components you can see and touch. Key hardware includes the **CPU** (Central Processing Unit), often called the \"brain\" of the computer, which executes instructions; **memory** (RAM) for temporary storage; **storage devices** (like hard drives or SSDs) for permanent storage; and **input/output devices** (e.g., keyboard, mouse, monitor, printer).\n2.  **Software**: These are the sets of instructions or programs that tell the hardware what to do. Examples include **operating systems** (like Windows, macOS) that manage the computer, and **application software** (like web browsers, games, word processors) that perform specific tasks.\n\nComputers have revolutionized how we live and work, enabling communication, research, entertainment, and automation. They process information quickly and accurately, making complex tasks manageable.",
+        "time": "02-06-2026 17:39",
+        "summary": "Newton's Laws of Motion are fundamental principles describing how objects move and interact under the influence of forces. They were formulated by Sir Isaac Newton and are crucial for understanding mechanics.\n\n*   **1. Newton's First Law (Law of Inertia):** An object at rest will remain at rest, and an object in motion will continue in motion with a constant velocity (same speed and direction) unless acted upon by an unbalanced external force. Inertia is the natural tendency of an object to resist changes in its state of motion. The more mass an object has, the greater its inertia.\n\n*   **2. Newton's Second Law (F=ma):** The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass. This is mathematically expressed as **F = m * a**, where F is the net force (measured in Newtons, N), m is the mass of the object (in kilograms, kg), and a is its acceleration (in meters per second squared, m/s\u00b2). This law quantifies how forces cause changes in an object's motion.\n\n*   **3. Newton's Third Law (Action-Reaction):** For every action, there is an equal and opposite reaction. When one object exerts a force (action) on a second object, the second object simultaneously exerts a force of equal magnitude and opposite direction (reaction) back on the first object. These forces always act on *different* objects.",
         "quiz": [
-            "What are the two main parts of a computer?",
-            "Which hardware component is often called the \"brain\" of the computer?",
-            "Give two examples of input devices.",
-            "What is the difference between hardware and software?",
-            "Name an operating system that runs on a computer."
+            "What is the tendency of an object to resist changes in its state of motion called?",
+            "State the mathematical formula that describes Newton's Second Law of Motion.",
+            "According to Newton's First Law, what is required to change an object's state of motion?",
+            "If you push against a wall, what does the wall do to you, based on Newton's Third Law?",
+            "An object with more mass requires more or less force to achieve the same acceleration as an object with less mass?"
         ],
         "flashcards": [
             {
-                "question": "What is a computer?",
-                "answer": "An electronic machine that takes input, processes it, stores it, and gives output."
+                "question": "What is Newton's First Law also known as?",
+                "answer": "The Law of Inertia."
             },
             {
-                "question": "What is hardware?",
-                "answer": "The physical parts of a computer you can touch (e.g., keyboard, CPU, monitor)."
+                "question": "What does F=ma stand for?",
+                "answer": "Force = mass \u00d7 acceleration."
             },
             {
-                "question": "What is software?",
-                "answer": "The instructions or programs that tell the hardware what to do (e.g., Windows, games)."
+                "question": "Give an example of Newton's Third Law in action.",
+                "answer": "A rocket expelling gases downwards (action) and moving upwards (reaction)."
             },
             {
-                "question": "What is the function of the CPU?",
-                "answer": "It's the Central Processing Unit, the \"brain\" of the computer that executes instructions."
+                "question": "What happens to an object's acceleration if you double the net force on it, assuming its mass remains constant?",
+                "answer": "Its acceleration doubles."
             },
             {
-                "question": "Give an example of an output device.",
-                "answer": "Monitor, printer, speakers."
+                "question": "Do action and reaction forces act on the same object or different objects?",
+                "answer": "They always act on different objects."
             }
         ]
     }

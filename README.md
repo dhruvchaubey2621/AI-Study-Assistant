@@ -32,3 +32,18 @@ cd AI-Study-Assistant
 pip install -r requirements.txt
 
 streamlit run app.py
+
+
+## Screenshots
+
+![Home](assets/home.png)
+
+![Summary](assets/summary.png)
+
+![Quiz](assets/quiz.png)
+
+![Flashcards](assets/flashcards.png)
+
+![History](assets/history.png)
+
+![Saved_History](assets/saved_history.png)
